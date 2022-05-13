@@ -1,0 +1,22 @@
+#jogo{
+    width:603px;
+    height:600px;
+    border:solid 4px
+}
+ 
+.linha{
+    height:200px;
+    border-bottom:solid 1px;
+}
+ 
+.casa{
+    display: flex;
+    font-size: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width:200px;
+    height:100%;
+    border-right:solid 1px;
+    float:left;
+}
