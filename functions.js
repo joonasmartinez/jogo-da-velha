@@ -1,5 +1,5 @@
 
-
+var myClick;
 var PLAYER_TIME = 'X';
 var WINS_POSSIBLE = [
 [1,2,3],
@@ -22,20 +22,23 @@ function init(){
 
     casas.forEach((item, index) => {
         //console.log(index,item)
-        item.addEventListener('click', () => {
+       item.addEventListener('mousedown', () => {
             
             if(validPlay(item)) {
                 item.innerHTML = PLAYER_TIME;
-                countPlay(PLAYER_TIME)
-                this.changePlayer()
                 winner()
+                changePlayer()
+                
             } else { return console.log("Jogue apenas nos espaços vazios.")}
             
            
         })
+        
     })
+    
 
 }
+
 
 function changePlayer(){
     if(PLAYER_TIME === 'X') return PLAYER_TIME = 'O';
@@ -47,39 +50,48 @@ function validPlay(local){
     return (local.innerHTML == '')
 }
 
-function countPlay(player){
-
-    if(player == 'X'){
-
-        console.log("Player X jogou.")
-
-    } else if(player == 'O'){
-
-        console.log("Player O jogou.")
-
-        
-    }
-
-}
-
 function cellElement(id){
 
     if(casas[id-1].innerHTML != "") return casas[id-1].innerHTML
 
 }
 
+function endGame(){
+   
+    casas.forEach((item, index)=>{
+       item.removeEventListener("mousedown", ()=>{
+        item.innerHTML = PLAYER_TIME;
+       })
+    })
+
+}
+
+function noWin(){
+
+}
+
 function winner(){
   
             WINS_POSSIBLE.some((combination) =>{
-                //console.log(combination)
                 let analise = [];
-                combination.some((idcasa,x)=>{
-                    analise.push(cellElement(idcasa))
-                    if(analise.length == 2){
-                        console.log(analise)
+                combination.some((idcasa)=>{
+                    if(cellElement(idcasa) != undefined){
+                        analise.push(cellElement(idcasa))
+                    }
+                    console.log(combination);
+                })
+                if(analise.length == 3){
+                    let win = true;
+
+                    analise.some((num, i, arr) =>{
+                        if(!(num==PLAYER_TIME)) win=false;
+                    })
+
+                    if(win){
+                        endGame();
+                        document.getElementById("resultado").innerHTML = (PLAYER_TIME == "O") ? "BOLINHA WINS" : "XIS WINS"
                     }
                     
-                })
-            })
+                }})
 
 }
