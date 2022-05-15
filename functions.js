@@ -26,7 +26,7 @@ function init(){
             
             if(validPlay(item)) {
                 item.innerHTML = PLAYER_TIME;
-                coutPlay(PLAYER_TIME)
+                countPlay(PLAYER_TIME)
                 this.changePlayer()
                 winner()
             } else { return console.log("Jogue apenas nos espaços vazios.")}
@@ -47,7 +47,7 @@ function validPlay(local){
     return (local.innerHTML == '')
 }
 
-function coutPlay(player){
+function countPlay(player){
 
     if(player == 'X'){
 
@@ -62,34 +62,24 @@ function coutPlay(player){
 
 }
 
-function winner(){
-  
+function cellElement(id){
 
-
-        WINS_POSSIBLE.forEach((itemWin, indexWin)=>{
-            let winner = [];
-            // console.log(itemWin[0], itemWin[1], itemWin[2])
-            casas.forEach((item, index)=>{
-                
-                for(let a = 0; a < 3; a++){
-
-                    if(item.id.replace("casa", "") == itemWin[a]){
-                        if(item.innerHTML != "") winner.push(item.innerHTML)
-                    }
-                }
-                
-                
-
-            });
-            console.log(winner.every(elem => elem == PLAYER_TIME))
-            // if(winner.every(whoWin)) return alert(`${PLAYER_TIME} VENCEU!`)
-            console.log(winner)
-
-        });
+    if(casas[id-1].innerHTML != "") return casas[id-1].innerHTML
 
 }
 
-function whoWin(player, index, array){
-    return player == PLAYER_TIME;
+function winner(){
+  
+            WINS_POSSIBLE.some((combination) =>{
+                //console.log(combination)
+                let analise = [];
+                combination.some((idcasa,x)=>{
+                    analise.push(cellElement(idcasa))
+                    if(analise.length == 2){
+                        console.log(analise)
+                    }
+                    
+                })
+            })
 
 }
