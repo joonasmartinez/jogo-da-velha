@@ -1,6 +1,6 @@
 
-var myClick;
 var PLAYER_TIME = 'X';
+var win;
 var WINS_POSSIBLE = [
 [1,2,3],
 [4,5,6],
@@ -20,14 +20,16 @@ winner();
 
 function init(){
 
+    
+
     casas.forEach((item, index) => {
         //console.log(index,item)
-       item.addEventListener('mousedown', () => {
+        addEvent = item.addEventListener('mouseup', () => {
             
             if(validPlay(item)) {
                 item.innerHTML = PLAYER_TIME;
                 winner()
-                changePlayer()
+                //changePlayer()
                 
             } else { return console.log("Jogue apenas nos espaços vazios.")}
             
@@ -41,6 +43,7 @@ function init(){
 
 
 function changePlayer(){
+    draw()
     if(PLAYER_TIME === 'X') return PLAYER_TIME = 'O';
 
     if(PLAYER_TIME === 'O') return PLAYER_TIME = 'X';
@@ -59,14 +62,25 @@ function cellElement(id){
 function endGame(){
    
     casas.forEach((item, index)=>{
-       item.removeEventListener("mousedown", ()=>{
-        item.innerHTML = PLAYER_TIME;
-       })
+       item.removeEventListener("mouseup", addEvent)
     })
 
 }
 
-function noWin(){
+function draw(){
+
+    //Função: Para cada DIV (casa) que contenha !EMPTY ++;
+   let counting = 0;
+   
+    casas.forEach((casa, index)=>{
+
+        if(casa.innerHTML != "") counting++;
+        
+        if(index == 8 && counting == 9){
+            console.log(win)
+            if(!(win)) document.getElementById("resultado").innerHTML = "EMPATE" 
+        }
+    })
 
 }
 
@@ -78,10 +92,9 @@ function winner(){
                     if(cellElement(idcasa) != undefined){
                         analise.push(cellElement(idcasa))
                     }
-                    console.log(combination);
                 })
                 if(analise.length == 3){
-                    let win = true;
+                    win = true;
 
                     analise.some((num, i, arr) =>{
                         if(!(num==PLAYER_TIME)) win=false;
@@ -93,5 +106,17 @@ function winner(){
                     }
                     
                 }})
+
+}
+
+function isWinner(){
+
+    WINS_POSSIBLE.some((combination)=>{
+        return combination.some((id)=>{
+            console.log(id)
+            console.log(cellElement(id) == PLAYER_TIME)
+            cellElement(id) == PLAYER_TIME
+        })
+    })
 
 }
