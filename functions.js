@@ -15,41 +15,24 @@ var X=[];
 var O=[];
 const casas = document.querySelectorAll('.casa');
 
-init();
-winner();
-
 function init(){
-
-    
 
     casas.forEach((item, index) => {
         //console.log(index,item)
-        addEvent = item.addEventListener('mouseup', () => {
-            
-            if(validPlay(item)) {
-                item.innerHTML = PLAYER_TIME;
-                winner()
-                //changePlayer()
-                
-            } else { return console.log("Jogue apenas nos espaços vazios.")}
-            
-           
-        })
+        item.addEventListener('click', marcar)
         
     })
     
-
 }
 
-
 function changePlayer(){
-    draw()
     if(PLAYER_TIME === 'X') return PLAYER_TIME = 'O';
 
     if(PLAYER_TIME === 'O') return PLAYER_TIME = 'X';
 }
 
 function validPlay(local){
+
     return (local.innerHTML == '')
 }
 
@@ -62,8 +45,27 @@ function cellElement(id){
 function endGame(){
    
     casas.forEach((item, index)=>{
-       item.removeEventListener("mouseup", addEvent)
+       item.removeEventListener("click", marcar)
     })
+
+}
+
+const marcar = (e)=>{
+    
+    if(validPlay(e.target)) { // VERIFICA SE É JOGADA VALIDA
+
+        e.target.innerHTML = PLAYER_TIME
+        if(isWinner()){ // Verifica se há vitória
+        } else{
+            console.log("Sem vencedor")
+            changePlayer();
+        }
+
+        
+
+    } else { // EVITA JOGADA INDEVIDA
+        alert("Apenas nos locais vazios.")
+    }
 
 }
 
@@ -106,17 +108,17 @@ function winner(){
                     }
                     
                 }})
+                return win
 
 }
 
 function isWinner(){
 
-    WINS_POSSIBLE.some((combination)=>{
-        return combination.some((id)=>{
-            console.log(id)
-            console.log(cellElement(id) == PLAYER_TIME)
-            cellElement(id) == PLAYER_TIME
+    return WINS_POSSIBLE.some((combination)=>{
+        return combination.every((id)=>{
+            return cellElement(combination[0]) == PLAYER_TIME && cellElement(combination[1]) == PLAYER_TIME && cellElement(combination[2]) == PLAYER_TIME
         })
     })
 
 }
+init();
