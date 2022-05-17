@@ -1,7 +1,7 @@
-
-var PLAYER_TIME = 'X';
-var marks = [];
-var WINS_POSSIBLE = [
+var PLAYER_TIME;
+var marks;
+const casas = document.querySelectorAll('.casa');
+const WINS_POSSIBLE = [
 [1,2,3],
 [4,5,6],
 [7,8,9],
@@ -11,10 +11,11 @@ var WINS_POSSIBLE = [
 [2,5,8],
 [3,6,9]
 ];
-const casas = document.querySelectorAll('.casa');
 
 function init(){
 
+    PLAYER_TIME = 'X';
+    marks = [];
     casas.forEach((item, index) => {
         //console.log(index,item)
         item.addEventListener('click', marcar)
@@ -24,6 +25,7 @@ function init(){
 }
 
 function changePlayer(){
+
     if(PLAYER_TIME === 'X') return PLAYER_TIME = 'O';
 
     if(PLAYER_TIME === 'O') return PLAYER_TIME = 'X';
@@ -98,6 +100,16 @@ function isWinner(){
             return cellElement(combination[0]) == PLAYER_TIME && cellElement(combination[1]) == PLAYER_TIME && cellElement(combination[2]) == PLAYER_TIME
         })
     })
+
+}
+
+function restartGame(){
+
+    init();
+    casas.forEach((casa)=>{
+        casa.innerHTML = "";
+    })
+
 
 }
 
