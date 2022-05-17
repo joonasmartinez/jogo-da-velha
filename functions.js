@@ -1,6 +1,6 @@
 
 var PLAYER_TIME = 'X';
-var win;
+var marks = [];
 var WINS_POSSIBLE = [
 [1,2,3],
 [4,5,6],
@@ -11,8 +11,6 @@ var WINS_POSSIBLE = [
 [2,5,8],
 [3,6,9]
 ];
-var X=[];
-var O=[];
 const casas = document.querySelectorAll('.casa');
 
 function init(){
@@ -55,60 +53,41 @@ const marcar = (e)=>{
     if(validPlay(e.target)) { // VERIFICA SE É JOGADA VALIDA
 
         e.target.innerHTML = PLAYER_TIME
+        marks.push(e.target.innerHTML)
+
         if(isWinner()){ // Verifica se há vitória
+
+            console.log("vencedor", PLAYER_TIME)
+            endGame();
+
         } else{
-            console.log("Sem vencedor")
-            changePlayer();
+
+            if(isDraw()){
+
+                console.log("EMPATE")
+
+            }else{
+
+                console.log("Sem vencedor")
+                changePlayer();
+
+            }
+            
         }
 
         
 
     } else { // EVITA JOGADA INDEVIDA
-        alert("Apenas nos locais vazios.")
+
+        alert("JOGADA INDEVIDA")
+
     }
 
 }
 
-function draw(){
+function isDraw(){
 
-    //Função: Para cada DIV (casa) que contenha !EMPTY ++;
-   let counting = 0;
-   
-    casas.forEach((casa, index)=>{
-
-        if(casa.innerHTML != "") counting++;
-        
-        if(index == 8 && counting == 9){
-            console.log(win)
-            if(!(win)) document.getElementById("resultado").innerHTML = "EMPATE" 
-        }
-    })
-
-}
-
-function winner(){
-  
-            WINS_POSSIBLE.some((combination) =>{
-                let analise = [];
-                combination.some((idcasa)=>{
-                    if(cellElement(idcasa) != undefined){
-                        analise.push(cellElement(idcasa))
-                    }
-                })
-                if(analise.length == 3){
-                    win = true;
-
-                    analise.some((num, i, arr) =>{
-                        if(!(num==PLAYER_TIME)) win=false;
-                    })
-
-                    if(win){
-                        endGame();
-                        document.getElementById("resultado").innerHTML = (PLAYER_TIME == "O") ? "BOLINHA WINS" : "XIS WINS"
-                    }
-                    
-                }})
-                return win
+    return (marks.length == 9);
 
 }
 
@@ -121,4 +100,5 @@ function isWinner(){
     })
 
 }
+
 init();
