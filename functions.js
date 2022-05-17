@@ -71,9 +71,9 @@ const marcar = (e)=>{
 
         if(isWinner()){ // Verifica se há vitória
 
-            console.log("vencedor", PLAYER_TIME)
             statusGame.innerHTML = `'${PLAYER_TIME}' WINNER`
             endGame();
+            btnRestart(true)
 
         } else{
 
@@ -94,7 +94,7 @@ const marcar = (e)=>{
 
     } else { // EVITA JOGADA INDEVIDA
 
-        alert("JOGADA INDEVIDA")
+        alert("Jogada indevida!")
 
     }
 
