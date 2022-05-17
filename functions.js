@@ -1,6 +1,8 @@
 var PLAYER_TIME;
 var marks;
+var restartBtn = document.getElementById('button');
 const casas = document.querySelectorAll('.casa');
+var statusGame = document.getElementById("resultado");
 const WINS_POSSIBLE = [
 [1,2,3],
 [4,5,6],
@@ -12,8 +14,10 @@ const WINS_POSSIBLE = [
 [3,6,9]
 ];
 
+
 function init(){
 
+    btnRestart()
     PLAYER_TIME = 'X';
     marks = [];
     casas.forEach((item, index) => {
@@ -22,6 +26,14 @@ function init(){
         
     })
     
+}
+
+function btnRestart(hide = false){
+
+    if(hide) return restartBtn.style="display:inline-block;";
+    restartBtn.style="display:none;"
+    restartBtn.addEventListener('click', restartGame, {once:true});
+
 }
 
 function changePlayer(){
@@ -60,17 +72,18 @@ const marcar = (e)=>{
         if(isWinner()){ // Verifica se há vitória
 
             console.log("vencedor", PLAYER_TIME)
+            statusGame.innerHTML = `'${PLAYER_TIME}' WINNER`
             endGame();
 
         } else{
 
             if(isDraw()){
-
-                console.log("EMPATE")
+                // Jogo empatou
+                statusGame.innerHTML = "EMPATE!";
+                btnRestart(true)
 
             }else{
-
-                console.log("Sem vencedor")
+                // Jogo continua (Sem empate, sem Vitoria) jogadas disponiveis ainda.
                 changePlayer();
 
             }
@@ -103,13 +116,13 @@ function isWinner(){
 
 }
 
-function restartGame(){
+const restartGame = (e)=> {
 
     init();
     casas.forEach((casa)=>{
         casa.innerHTML = "";
     })
-
+    statusGame.innerHTML = "JOGO DA VELHA"
 
 }
 
