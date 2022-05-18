@@ -31,3 +31,9 @@ Jogo da velha arquitetado em HTML e CSS cujas funções foram implementadas com 
  Sempre que acontecer um ou outro, surgirá um botão logo abaixo para restartar o game. Após pressionar, ele irá sumir.
  
 > OBS: Não foi implementado IA. Mas será! Aguarde...
+
+## Contato
+Caso você tenha se interessado neste projeto e esteja com alguma dúvida, manda um email pra mim: mz-martinez@live.com
+
+## Considerações finais
+Para fins de informação, este projeto foi desenvolvido apenas para aplicação de conhecimento.
