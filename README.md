@@ -30,3 +30,4 @@ Jogo da velha arquitetado em HTML e CSS cujas funções foram implementadas com 
  
  Sempre que acontecer um ou outro, surgirá um botão logo abaixo para restartar o game. Após pressionar, ele irá sumir.
  
+> OBS: Não foi implementado IA. Mas será! Aguarde...
