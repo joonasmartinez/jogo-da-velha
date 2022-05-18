@@ -1,5 +1,7 @@
 var PLAYER_TIME;
+var IA = false;
 var marks;
+var btnIA = document.getElementById("buttonIA");
 var restartBtn = document.getElementById('button');
 const casas = document.querySelectorAll('.casa');
 var statusGame = document.getElementById("resultado");
@@ -25,7 +27,21 @@ function init(){
         item.addEventListener('click', marcar)
         
     })
+
+    btnIA.addEventListener("click", activeIA);
+
     
+}
+
+function activeIA(){
+    IA = !IA;
+    IA ? btnIA.innerHTML = "MAQUINA: ON" : btnIA.innerHTML = "MAQUINA: OFF";
+    
+}
+
+function IAPlay(){
+    console.log("IA JOGOU")
+    changePlayer();
 }
 
 function btnRestart(hide = false){
@@ -85,6 +101,7 @@ const marcar = (e)=>{
             }else{
                 // Jogo continua (Sem empate, sem Vitoria) jogadas disponiveis ainda.
                 changePlayer();
+                if(PLAYER_TIME == "O" && IA) IAPlay();
 
             }
             
