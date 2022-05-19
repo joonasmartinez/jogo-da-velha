@@ -1,5 +1,6 @@
 var PLAYER_TIME;
 var IA = false;
+var playsPossible;
 var marks;
 var btnIA = document.getElementById("buttonIA");
 var restartBtn = document.getElementById('button');
@@ -22,6 +23,7 @@ function init(){
     btnRestart()
     PLAYER_TIME = 'X';
     marks = [];
+    playsPossible = WINS_POSSIBLE;
     casas.forEach((item, index) => {
         //console.log(index,item)
         item.addEventListener('click', marcar)
@@ -100,7 +102,7 @@ const marcar = (e)=>{
 
             }else{
                 // Jogo continua (Sem empate, sem Vitoria) jogadas disponiveis ainda.
-                changePlayer();
+                //changePlayer();
                 if(PLAYER_TIME == "O" && IA) IAPlay();
 
             }
@@ -127,7 +129,7 @@ function isWinner(){
 
     return WINS_POSSIBLE.some((combination)=>{
         return combination.every((id)=>{
-            return cellElement(combination[0]) == PLAYER_TIME && cellElement(combination[1]) == PLAYER_TIME && cellElement(combination[2]) == PLAYER_TIME
+            return (cellElement(id) == PLAYER_TIME)
         })
     })
 
@@ -140,6 +142,22 @@ const restartGame = (e)=> {
         casa.innerHTML = "";
     })
     statusGame.innerHTML = "JOGO DA VELHA"
+
+}
+
+function debug(){
+
+    WINS_POSSIBLE.some((combination, index)=>{
+        
+        let ab = combination.some((a)=>{
+             return (cellElement(a) == PLAYER_TIME && cellElement(a) != undefined && cellElement(a) != !PLAYER_TIME)
+        })
+
+        if(ab) {
+            console.log(combination, index)
+            //playsPossible.splice(index, 1)
+        }
+    })
 
 }
 
