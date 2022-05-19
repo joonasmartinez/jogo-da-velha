@@ -32,8 +32,8 @@ body{
 }
 
 #casa2, #casa5, #casa8{
-    border-left: solid 2px;
-    border-right: solid 2px;
+    border-left: solid 5px;
+    border-right: solid 5px;
     border-color:aliceblue;
 }
 
@@ -43,8 +43,8 @@ body{
 }
 
 #casa4, #casa5, #casa6{
-    border-top: solid 2px;
-    border-bottom: solid 2px;
+    border-top: solid 5px;
+    border-bottom: solid 5px;
     border-color:aliceblue;
 }
  
@@ -80,6 +80,7 @@ button {
     font-size: 16px;
     cursor:pointer;
     margin-top: 5px;
+    margin-bottom: 55px;
 }
 
 button:hover{
@@ -96,5 +97,6 @@ button:hover{
     text-align: center;
 }
 .author::before{
+    display: inline-block;
     content:"by Jonas Martinez"
 }
