@@ -23,14 +23,34 @@ body{
  
 .linha{
     height:200px;
-    border-bottom:solid 1px;
-    border-top: solid 1px; 
+    border-color:aliceblue;
+}
+
+#casa1, #casa4, #casa7{
+    border-right: solid 0px;
+    border-color:aliceblue;
+}
+
+#casa2, #casa5, #casa8{
+    border-left: solid 2px;
+    border-right: solid 2px;
+    border-color:aliceblue;
+}
+
+#casa3, #casa6, #casa9{
+    border-left: solid 0px;
+    border-color:aliceblue;
+}
+
+#casa4, #casa5, #casa6{
+    border-top: solid 2px;
+    border-bottom: solid 2px;
     border-color:aliceblue;
 }
  
 .casa{
     
-    border-left: solid 1px;
+    border-left: solid 0px;
     display: flex;
     font-size: 100px;
     justify-content: center;
@@ -38,7 +58,7 @@ body{
     text-align: center;
     width:200px;
     height:100%;
-    border-right:solid 2px;
+    border-right:solid 0px;
     float:left;
     border-color:aliceblue;
     cursor:pointer;
