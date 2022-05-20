@@ -23,7 +23,7 @@ function init(){
     btnRestart()
     PLAYER_TIME = 'X';
     marks = [];
-    playsPossible = WINS_POSSIBLE;
+    playsPossible = WINS_POSSIBLE
     casas.forEach((item, index) => {
         //console.log(index,item)
         item.addEventListener('click', marcar)
@@ -41,11 +41,6 @@ function activeIA(){
     
 }
 
-function IAPlay(){
-    console.log("IA JOGOU")
-    changePlayer();
-}
-
 function btnRestart(hide = false){
 
     if(hide) return restartBtn.style="display:inline-block;";
@@ -56,9 +51,8 @@ function btnRestart(hide = false){
 
 function changePlayer(){
 
-    if(PLAYER_TIME === 'X') return PLAYER_TIME = 'O';
+    PLAYER_TIME === 'X' ? PLAYER_TIME = 'O' : PLAYER_TIME = 'X';
 
-    if(PLAYER_TIME === 'O') return PLAYER_TIME = 'X';
 }
 
 function validPlay(local){
@@ -72,6 +66,11 @@ function cellElement(id){
 
 }
 
+function setCellElement(id){
+    casas[id-1].click()
+    
+}
+
 function endGame(){
    
     casas.forEach((item, index)=>{
@@ -81,7 +80,6 @@ function endGame(){
 }
 
 const marcar = (e)=>{
-    
     if(validPlay(e.target)) { // VERIFICA SE É JOGADA VALIDA
 
         e.target.innerHTML = PLAYER_TIME
@@ -101,9 +99,9 @@ const marcar = (e)=>{
                 btnRestart(true)
 
             }else{
-                // Jogo continua (Sem empate, sem Vitoria) jogadas disponiveis ainda.
-                //changePlayer();
-                if(PLAYER_TIME == "O" && IA) IAPlay();
+                // Jogo continua (Sem empate, sem Vitoria e jogadas disponiveis ainda.
+                changePlayer();
+                if(PLAYER_TIME == "O" && IA) IAcheck();
 
             }
             
@@ -145,20 +143,34 @@ const restartGame = (e)=> {
 
 }
 
-function debug(){
+function IAmark(combination){
+    let id=0;
+    combination.some((element)=>{
+        if(cellElement(element) == undefined || cellElement(element) == "") id = element
+    })
+    setTimeout(setCellElement(id), 5000)
+    
 
-    WINS_POSSIBLE.some((combination, index)=>{
-        
-        let ab = combination.some((a)=>{
-             return (cellElement(a) == PLAYER_TIME && cellElement(a) != undefined && cellElement(a) != !PLAYER_TIME)
+}
+
+function IAcheck(){
+    // Lógica: 2º X VAI GANHAR? | 1º O VAI GANHAR? se sim JOGAR ONDE PRECISA se não FORMAR ALGUM
+    WINS_POSSIBLE.forEach((combination)=>{
+        let X=0;
+        let O=0;
+        combination.forEach((elements)=>{
+            
+            if(cellElement(elements) == 'X') X++;
+            if(cellElement(elements) == 'O') O++;
+
+            console.log(elements, X, O)
         })
-
-        if(ab) {
-            console.log(combination, index)
-            //playsPossible.splice(index, 1)
+        if(X == 2 || O == 2 && PLAYER_TIME=="O") {
+            if(X == 0 && O == 2) return IAmark(combination)
+            if(X == 2 && O == 0) return IAmark(combination)
         }
     })
-
+    
 }
 
 init();
