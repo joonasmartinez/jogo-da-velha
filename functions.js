@@ -145,16 +145,21 @@ const restartGame = (e)=> {
 
 function IAmark(combination){
     let id=0;
+    console.log(combination)
     combination.some((element)=>{
-        if(cellElement(element) == undefined || cellElement(element) == "") id = element
+        if(cellElement(element) == undefined) id = element
+        
     })
-    setTimeout(setCellElement(id), 5000)
+    setCellElement(id)
     
 
 }
 
 function IAcheck(){
     // Lógica: 2º X VAI GANHAR? | 1º O VAI GANHAR? se sim JOGAR ONDE PRECISA se não FORMAR ALGUM
+    let aX = [];
+    let aO = [];
+    let init = [];
     WINS_POSSIBLE.forEach((combination)=>{
         let X=0;
         let O=0;
@@ -163,14 +168,41 @@ function IAcheck(){
             if(cellElement(elements) == 'X') X++;
             if(cellElement(elements) == 'O') O++;
 
-            console.log(elements, X, O)
+            //if(X==2 || O==2) console.log(combination,elements, X, O)
         })
-        if(X == 2 || O == 2 && PLAYER_TIME=="O") {
-            if(X == 0 && O == 2) return IAmark(combination)
-            if(X == 2 && O == 0) return IAmark(combination)
-        }
+        aX.push(X);
+        aO.push(O);
+        
     })
+    console.log(aX, aO)
+    aO.forEach((element, index)=>{
+        console.log(WINS_POSSIBLE[index],element, aX[index], index)
+        if(element == 0){
+            if(aX[index] <= 2 && aX[index] != 0) init.push(WINS_POSSIBLE[index])
+        }
+        
+    })
+    console.log(init)
+    if(init.length > 0) IAcheckInit(init)
     
+}
+
+function IAcheckInit(init){
+    let numbers = []
+    init.forEach((element)=>{ element.forEach((num, i)=>{
+    if(cellElement(num) == undefined) {
+        numbers.push(num)
+    }
+    });  
+})
+IArandomPlay(numbers)
+}
+
+function IArandomPlay(combination){
+    console.log("combinação",combination)
+    let idPlay = []
+    idPlay.push(combination[Math.floor(Math.random() * combination.length)])
+    IAmark(idPlay)
 }
 
 init();
