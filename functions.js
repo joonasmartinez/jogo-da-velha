@@ -158,6 +158,7 @@ function IAcheck(){
     let init = [];
     let win = [];
     let risk = [];
+    let trywin = [];
     WINS_POSSIBLE.forEach((combination)=>{
         let X=0;
         let O=0;
@@ -181,7 +182,8 @@ function IAcheck(){
                 }
             break;
             case 1:
-                if(aX[index] == 0) init.push(WINS_POSSIBLE[index])
+                if(aX[index] == 0) trywin.push(WINS_POSSIBLE[index])
+                else if(aX[index] == 1) init.push(WINS_POSSIBLE[index])
             break;
             
             case 2:
@@ -197,6 +199,8 @@ function IAcheck(){
         return IAcheckInit(win)
     }else if(risk.length > 0) {
         return IAcheckInit(risk)
+    }else if(trywin.length > 0) {
+        return IAcheckInit(trywin)
     }else if(init.length > 0) IAcheckInit(init)
     
 }
