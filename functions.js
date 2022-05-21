@@ -107,8 +107,6 @@ const marcar = (e)=>{
             
         }
 
-        
-
     } else { // EVITA JOGADA INDEVIDA
 
         alert("Jogada indevida!")
@@ -145,7 +143,6 @@ const restartGame = (e)=> {
 
 function IAmark(combination){
     let id=0;
-    console.log(combination)
     combination.some((element)=>{
         if(cellElement(element) == undefined) id = element
         
@@ -156,10 +153,11 @@ function IAmark(combination){
 }
 
 function IAcheck(){
-    // Lógica: 2º X VAI GANHAR? | 1º O VAI GANHAR? se sim JOGAR ONDE PRECISA se não FORMAR ALGUM
     let aX = [];
     let aO = [];
     let init = [];
+    let win = [];
+    let risk = [];
     WINS_POSSIBLE.forEach((combination)=>{
         let X=0;
         let O=0;
@@ -168,22 +166,38 @@ function IAcheck(){
             if(cellElement(elements) == 'X') X++;
             if(cellElement(elements) == 'O') O++;
 
-            //if(X==2 || O==2) console.log(combination,elements, X, O)
         })
         aX.push(X);
         aO.push(O);
         
     })
-    console.log(aX, aO)
     aO.forEach((element, index)=>{
-        console.log(WINS_POSSIBLE[index],element, aX[index], index)
-        if(element == 0){
-            if(aX[index] <= 2 && aX[index] != 0) init.push(WINS_POSSIBLE[index])
+        switch(element){
+            case 0:
+                if(aX[index] == 2){
+                    risk.push(WINS_POSSIBLE[index])
+                } else if(aX[index] == 1){
+                    init.push(WINS_POSSIBLE[index])
+                }
+            break;
+            case 1:
+                if(aX[index] == 0) init.push(WINS_POSSIBLE[index])
+            break;
+            
+            case 2:
+                if(aX[index] == 0){
+                    win.push(WINS_POSSIBLE[index])
+                }
+            break;
         }
         
     })
-    console.log(init)
-    if(init.length > 0) IAcheckInit(init)
+
+    if(win.length > 0) {
+        return IAcheckInit(win)
+    }else if(risk.length > 0) {
+        return IAcheckInit(risk)
+    }else if(init.length > 0) IAcheckInit(init)
     
 }
 
@@ -199,10 +213,10 @@ IArandomPlay(numbers)
 }
 
 function IArandomPlay(combination){
-    console.log("combinação",combination)
     let idPlay = []
     idPlay.push(combination[Math.floor(Math.random() * combination.length)])
     IAmark(idPlay)
 }
 
+activeIA()
 init();
