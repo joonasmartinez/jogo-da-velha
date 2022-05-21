@@ -1,4 +1,5 @@
 var PLAYER_TIME;
+var scoreboard = [0,0,0] //score: [0] WINS; [1] LOSS; [2] DRAW
 var IA = false;
 var playsPossible;
 var marks;
@@ -32,6 +33,14 @@ function init(){
 
     btnIA.addEventListener("click", activeIA);
 
+    
+}
+
+function updateScore(){
+    let score = document.querySelector('.scoreboard').querySelectorAll('div')
+    score.forEach((element, index)=>{
+        element.innerHTML = scoreboard[index];
+    })
     
 }
 
@@ -88,6 +97,15 @@ const marcar = (e)=>{
         if(isWinner()){ // Verifica se há vitória
 
             statusGame.innerHTML = `'${PLAYER_TIME}' WINNER`
+            switch(PLAYER_TIME){
+                case 'X':
+                    scoreboard[0]++;
+                break;
+                case 'O':
+                    scoreboard[1]++;
+                break;
+            }
+            updateScore()
             endGame();
             btnRestart(true)
 
@@ -95,6 +113,8 @@ const marcar = (e)=>{
 
             if(isDraw()){
                 // Jogo empatou
+                scoreboard[2]++;
+                updateScore()
                 statusGame.innerHTML = "EMPATE!";
                 btnRestart(true)
 
@@ -222,5 +242,6 @@ function IArandomPlay(combination){
     IAmark(idPlay)
 }
 
-activeIA()
+activeIA();
+updateScore()
 init();
