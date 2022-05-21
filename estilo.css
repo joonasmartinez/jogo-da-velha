@@ -10,15 +10,21 @@ body{
     display: inline-block;
     width: 100%;
 }
-.wins,.loss,.draw{
+.wins,.loss,.draw, span{
     display: inline-flex;
     color: rgb(230, 230, 230);
     font-size: 20px;
-    width: 30%;
+    width: 15%;
     justify-content: center;
     align-content: center;
     justify-items: center;
     align-items: center;
+}
+.loss{
+    color: rgb(126, 3, 3);
+}
+.wins{
+    color: rgb(42, 94, 29); 
 }
 #jogo{
     
