@@ -4,7 +4,7 @@ Um clássico que você provavelmente já jogou rabiscando no papel durante a aul
 
 <div align="center">
   
-  <img src="https://user-images.githubusercontent.com/84146200/168942441-dc2e1fec-c6c5-4b75-8f0d-264ebeda4b69.png"/>
+  <img src="https://user-images.githubusercontent.com/84146200/169704654-7d14b2db-870e-4db1-a4cc-1e343f16abb2.png" height="400px"/>
  
 </div>
  <br>
@@ -20,8 +20,8 @@ Jogo da velha arquitetado em HTML e CSS cujas funções foram implementadas com 
 
 <div align="center" style="height:300px;">
   
-  <img src="https://user-images.githubusercontent.com/84146200/168943483-7d149b9c-7fcd-48e9-99ef-f32a2374f34e.png" height="400px"/>
-  <img src="https://user-images.githubusercontent.com/84146200/168944189-60489ab5-c96d-4793-a4ac-4dd63297697b.png" height="400px"/>
+  <img src="https://user-images.githubusercontent.com/84146200/169704604-7f9e77d0-8ff8-4fff-a018-2f5c4091f223.png" height="400px"/>
+  <img src="https://user-images.githubusercontent.com/84146200/169704528-56ff88c6-2f9d-4422-ad15-a86b7f410422.png" height="400px"/>
  
 </div>
  <br>
