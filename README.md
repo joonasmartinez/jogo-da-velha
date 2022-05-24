@@ -41,6 +41,14 @@ OBS: Caso IA veja que há tanto a possibilidade do Player 'X' vencer quanto de I
 
 > Você é bom no jogo da velha? Então é bem provável que você empate mais do que ganhe.
 
+### Como rodar este projeto? 
+
+Você pode criar uma pasta em sua máquina e, dentro dela, clicar com botão direito e apertar 'GIT BASH HERE'. Com seu GIT aberto digite o seguinte código:
+
+<code>git clone https://github.com/joonasmartinez/jogo-da-velha.git</code>
+
+Pronto. Você terá a pasta deste projeto dentro da sua pasta criada. Agora é só abrir o arquivo index.html com o navegador e tentar ganhar.
+
 ## Contato
 Caso você tenha se interessado neste projeto e esteja com alguma dúvida, manda um email pra mim: mz-martinez@live.com
 
