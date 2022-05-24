@@ -32,14 +32,14 @@ Jogo da velha arquitetado em HTML e CSS cujas funções foram implementadas com 
  
 > OBS: Implementado IA em 20/05/2022.
 
-## IA deste projeto
+### IA deste projeto
 O que acontece aqui é o seguinte: Após uma jogada do Player X, é disparada a execução da IA que irá analisar quais as jogadas possíveis de vitória do player 'X', baseado na jogada inicial. Destas, a IA irá jogar em alguma das casas em que X pode ganhar. Após a próxima jogada do Player 'X', a IA irá analisar:
 - Player 'X' está prestes a ganhar? Se sim, IA irá bloquear a vitória jogando na casa restante.
 Caso esta condição acima seja negativa, IA irá jogar na casa disponível para formar sua vitória. 
 
 OBS: Caso IA veja que há tanto a possibilidade do Player 'X' vencer quanto de IA vencer, o que você acha que ela fará? Como se é esperado, ela vai marcar onde é sua vitória. IA gosta de vencer. 😜
 
-> É POSSÍVEL GANHAR DA IA? Sim, você pode ganhar. Mas é bem provável que você empate mais do que ganhe.
+> Você é bom no jogo da velha? Então é bem provável que você empate mais do que ganhe.
 
 ## Contato
 Caso você tenha se interessado neste projeto e esteja com alguma dúvida, manda um email pra mim: mz-martinez@live.com
